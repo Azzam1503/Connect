@@ -15,3 +15,11 @@ module.exports.signIn = function(req, res){
         title: 'Connect | Sign In'
     });
 }
+
+module.exports.create = function(req, res){
+    
+}
+
+module.exports.createSession = function(req, res){
+    
+}
