@@ -1,15 +1,9 @@
-<html>
-    <head>
-        <title> <%= title %></title>
-    </head>
-    <body>
-        <h1>User sign In</h1>
-        <form action="./user/create-session">
-            <input type="email" name="email" placeholder="enter email" required>
-            <input type="password" name="password" placeholder="enter password" required>
-            <input type="submit" value="Sign In">
-        </form>
-    </body>
-</html>
+<h1>User sign In</h1>
+
+<form action="/users/create-session">
+    <input type="email" name="email" placeholder="enter email" required>
+    <input type="password" name="password" placeholder="enter password" required>
+    <input type="submit" value="Sign In">
+</form>
 
 
