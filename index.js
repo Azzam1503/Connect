@@ -12,7 +12,16 @@ const passportLocal = require('./config/passport-local-startegy');
 const MongoStore = require('connect-mongo');
 
 
-app.use(express.urlencoded());
+// app.use(sassMiddleware({
+//     src: './assets/scss',
+//     dest: './assets/css',
+//     debug: true,
+//     outputStyle: 'extended',
+//     prefix: '/css'
+// }));
+
+
+app.use(express.urlencoded());  
 app.use(cookieParser());
 
 app.use(express.static('./assets'));
