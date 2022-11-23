@@ -4,7 +4,9 @@
   "description": "My all time social media web application",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "nodemon-watch": "nodemon index.js -e *",
+    "sass-watch": "sass --watch assets/scss assets/css",
+    "start": "npm-run-all --parallel sass-watch nodemon-watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Azzam Uddin",
@@ -17,6 +19,8 @@
     "express-ejs-layouts": "^2.5.1",
     "express-session": "^1.17.3",
     "mongoose": "^6.7.2",
+    "nodemon": "^2.0.20",
+    "npm-run-all": "^4.1.5",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0"
   }
