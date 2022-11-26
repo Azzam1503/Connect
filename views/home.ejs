@@ -1,9 +1,7 @@
-<title><%= title%> </title>
+<link rel="stylesheet" href="/scss/home.css">
 
-
-<h1> Connect | <%= title%></h1>
-
-<section class="feet-posts">
+<div id="home-container">
+<section id="feed-posts">
     <%if(locals.user){%>
     <h4>Posts</h4>
     <form action="/posts/create" id="new-post-form" method="POST">
@@ -15,39 +13,20 @@
     <div class="post-list-container">
         <ul>
             <% for(post of posts){ %>
-                <li>
-                    <p> <%=  post.content %>
-                        <br>
-                        <small>
-                        <%= post.user.name%>
-                        </small>
-                    </p>
-                    <div class="post-comment">
-                        <%if(locals.user){%>
-                        <form action="/comments/create" method="POST">
-                            <input type="text" name="content" placeholder="type comment" required>
-                            <input type="hidden" name="post" value="<%= post._id%>">
-                            <input type="submit" value="Add Comment">
-                        </form>
-                        <%}%>
-                        <div class="post-comment-list">
-                            <ul class="post-comment-<%= post._id%>">
-                                <% for(comment of post.comments){%>
-                                    <p>
-                                        <%= comment.content%>
-                                        <br>
-                                        <small>
-                                            <%= comment.user.name%>
-                                        </small>
-                                    </p>
-                                <%}%>
-                            </ul>
 
-                        </div>
-                    </div>
-                </li>
+               <%- include('_post') -%>
+
             <% } %>
         </ul>
     </div>
 </section>
     
+<section id="user-friends">
+    <h4>Friends</h4>
+    <%for(u of all_users){%>
+        <p>
+            <a href="/users/profile/<%= u.id %>"><%= u.name%></a>
+            </p>
+        <%}%>
+</section>
+</div>
