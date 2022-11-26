@@ -1,14 +1,30 @@
-
 <title><%= title%> </title>
 
 
 <h1> Connect | <%= title%></h1>
 
 <section class="feet-posts">
-    <h4>Post</h4>
+    <%if(locals.user){%>
+    <h4>Posts</h4>
     <form action="/posts/create" id="new-post-form" method="POST">
-        <textarea name="content" id="" cols="30" rows="3"></textarea>
-        <input type="submit" value="POST " name="" id="">
+        <textarea name="content" id="" cols="30" rows="3" placeholder="Type here...."></textarea>
+        <input type="submit" value="POST ">
     </form>
+    <%}%>
+
+    <div class="post-list-container">
+        <ul>
+            <% for(post of posts){ %>
+                <li>
+                    <p> <%=  post.content %>
+                        <br>
+                        <small>
+                        <%= post.user.name%>
+                        </small>
+                    </p>
+                </li>
+            <% } %>
+        </ul>
+    </div>
 </section>
     
