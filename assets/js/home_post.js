@@ -12,7 +12,7 @@
                 data: newPostForm.serialize(),
                 success: function(data){
                     let newPost = newPostDom(data.data.post);
-                    $('.post-list-container>ul').prepend(newPost);
+                    $('#posts-list-container>ul').prepend(newPost);
                     deletePost($(' .delete-post-button', newPost));
                 }, error: function(){
                     console.log(error.responseText);
@@ -34,14 +34,14 @@
                         ${post.user.name}
                     </small>
                 </p>
-                <div class="post-comment">
+                <div class="post-comments">
                     <form action="/comments/create" method="POST">
                         <input type="text" name="content" placeholder="type comment" required>
                         <input type="hidden" name="post" value="${post._id}">
                         <input type="submit" value="Add Comment">
                     </form>
-                    <div class="post-comment-list">
-                        <ul class="post-comment-${post._id}">
+                    <div class="post-comments-list">
+                        <ul id="post-comments-${post._id}">
                         </ul>
                     </div>
                 </div>
