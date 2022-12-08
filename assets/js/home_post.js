@@ -1,10 +1,9 @@
-{
     //Method to submit the new form post using AJAX
     let createPost = function(){
         let newPostForm = $("#new-post-form");
 
         newPostForm.submit(function(e){
-            e.preventDefault ();
+            e.preventDefault();
 
             $.ajax({
                 type: 'post',
@@ -14,6 +13,9 @@
                     let newPost = newPostDom(data.data.post);
                     $('#posts-list-container>ul').prepend(newPost);
                     deletePost($(' .delete-post-button', newPost));
+
+                    new PostComments(data.data.post._id);
+                    
                 }, error: function(){
                     console.log(error.responseText);
                 }
@@ -35,7 +37,7 @@
                     </small>
                 </p>
                 <div class="post-comments">
-                    <form action="/comments/create" method="POST">
+                    <form id="post-${ post._id }-comments-form" action="/comments/create" method="POST">
                         <input type="text" name="content" placeholder="type comment" required>
                         <input type="hidden" name="post" value="${post._id}">
                         <input type="submit" value="Add Comment">
@@ -64,5 +66,24 @@
         });
     }
 
-    createPost();
-}
+
+
+
+
+// loop over all the existing posts on the page (when the window loads for the first time) and call the delete post method on delete link of each, also add AJAX (using the class we've created) to the delete button of each
+    let convertPostsToAjax = function(){
+        $('#posts-list-container>ul>li').each(function(){
+            let self = $(this);
+            let deleteButton = $(' .delete-post-button', self);
+            deletePost(deleteButton);
+
+            // get the post's id by splitting the id attribute
+            let postId = self.prop('id').split("-")[1]
+            new PostComments(postId);
+        });
+    }
+
+
+
+createPost();
+convertPostsToAjax();

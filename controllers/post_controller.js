@@ -8,6 +8,7 @@ module.exports.create = async function(req, res){
             user: req.user._id
         });
 
+        
         if(req.xhr){
             // post = await post.populate('user', 'name').execPopulate();
             return res.status(200).json({
@@ -15,7 +16,7 @@ module.exports.create = async function(req, res){
                     post: post
                 },
                 message: "Post created"
-            })
+            });
         }
 
         req.flash('success', 'Post published!');
@@ -42,7 +43,7 @@ module.exports.destroy = async function(req, res){
                     post_id: req.params.id
                   },
                   message: "Post deleted!"
-                })
+                });
             }
             
             req.flash('success', 'Posts and associated comments are deleted!');

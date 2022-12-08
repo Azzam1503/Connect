@@ -28,12 +28,12 @@ class PostComments{
             let self = this;
 
             $.ajax({
-                type: 'post',
+                type: 'POST',
                 url: '/comments/create',
                 data: $(self).serialize(),
                 success: function(data){
                     let newComment = pSelf.newCommentDom(data.data.comment);
-                    $(`.post-comments-${postId}`).prepend(newComment);
+                    $(`#post-comments-${postId}`).prepend(newComment);
                     pSelf.deleteComment($(' .delete-comment-button', newComment));
 
                     new Noty({
@@ -69,7 +69,8 @@ class PostComments{
                             <small>
                                 ${comment.user.name}
                             </small>
-                        </p>                         
+                        </p>    
+
                 </li>`);
     }
 
