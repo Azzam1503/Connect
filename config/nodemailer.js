@@ -10,13 +10,13 @@ let transporter = nodemailer.createTransport({
     port: '587',
     secure: 'false',
     auth: {
-        user: 'johnloyal1580@gmail.com',
-        password: 'John@12345'
+        user: '',
+        password: ''
     }
 });
 
 
-let renderedTemplate = (data, relativePath) => {
+let renderTemplate = (data, relativePath) => {
     let mailHTML;
     ejs.renderFile(
         path.join(__dirname, '../views/mailers', relativePath) ,
@@ -34,7 +34,7 @@ let renderedTemplate = (data, relativePath) => {
     return mailHTML;
 }
 
-module.expots = {
+module.exports = {
     transporter: transporter,
-    renderedTemplate: renderedTemplate
+    renderTemplate: renderTemplate
 }
