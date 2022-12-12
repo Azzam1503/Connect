@@ -1,14 +1,15 @@
-const nodemailer = require('../config/nodemailer');
+const nodeMailer = require('../config/nodemailer');
 
 exports.newComment = (comment)=> {
     console.log('inside newComment Mailer');
+    let htmlString = nodeMailer.renderTemplate({comment: comment}, '/comments/new_comment.ejs');
 
     
-    nodemailer.transporter.sendMail({
-        from: 'Connect.com',
+    nodeMailer.transporter.sendMail({
+        from: 'johnloayl1580@gmail.com',
         to: comment.user.email,
         subject: "new Comment is published",
-        html: '<h1>Yup,your comment is now published<h1/>'
+        html: htmlString
     }, (err, info)=>{
         if(err){
             console.log("Error in sending mail", err); 
